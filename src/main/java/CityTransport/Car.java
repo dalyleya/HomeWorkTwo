@@ -1,7 +1,9 @@
+package CityTransport;
+
 /**
  * Created by user on 22.07.2015.
  */
-public class Car extends CityTransport implements Driver{
+public class Car extends CityTransport implements Driver {
     private String carBrand;
     private String carModel;
    // private boolean foolTank;

@@ -26,10 +26,10 @@ public abstract class PublicCar extends Car{
 
     public String playMusic() {
         if (isPlayMusic()){
-            return "Буц, буц! Уже играет!";
-        }
-        setIsPlayMusic(true);
-
-        return "начало играть!";
+        return "Буц, буц! Уже играет!";
     }
+    setIsPlayMusic(true);
+
+    return "начало играть!";
+}
 }

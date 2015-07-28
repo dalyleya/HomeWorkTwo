@@ -1,7 +1,8 @@
-/**
+package CityTransport; /**
  * Created by user on 22.07.2015.
  */
- class CityTransport extends Transport{
+
+class CityTransport extends Transport {
     private static int id=1;
     protected  int idRegNumber=1;
     protected int[] cords;
