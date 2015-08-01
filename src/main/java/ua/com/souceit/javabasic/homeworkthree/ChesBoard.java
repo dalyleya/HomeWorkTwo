@@ -9,7 +9,7 @@ public class ChesBoard {
     public ChesBoard(int x) {
         this.board=new char[x][x];
     }
-    private void createBord(int x){
+    public void createBord(int x){
                 for (int i=0; i<=x; i++)
                 {
                     for (int j=0; j<=x; j++)
@@ -17,10 +17,12 @@ public class ChesBoard {
                         if((i+j)%2==0)
                         {
                             board[i][j]='B';
+                            System.out.println(board[i][j]);
                         }
                         else
                         {
                             board[i][j]='W';
+                            System.out.println(board[i][j]);
                         }
                     }
             }
