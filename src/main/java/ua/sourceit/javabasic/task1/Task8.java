@@ -6,16 +6,15 @@ package ua.sourceit.javabasic.task1;
  * Created by user on 04.08.2015.
  */
 public class Task8 {
+    private final int x = 8;
+    private char[][] board;
+    public Task8() {
+        this.board = new char[x][x];
+    }
+
     public static void main(String[] args) {
         Task8 a = new Task8();
         a.createBord();
-    }
-
-    private final int x = 8;
-    private char[][] board;
-
-    public Task8() {
-        this.board = new char[x][x];
     }
 
     public void createBord() {
