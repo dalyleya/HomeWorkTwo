@@ -34,28 +34,33 @@ public class MyVector {
     }
 
     public void clear() {
-        this.size = 2;
+        this.size = 0;
         this.data = new Object[size];
     }
 
 
-    public void addElement(Object var1) {
+    public void addElement(Object val) {
 
-        if (indexOfElement >= 0 && indexOfElement < size) {
-            data[indexOfElement] = var1;
+
+        if (size > indexOfElement) {
+            data[indexOfElement] = val;
             indexOfElement++;
         } else {
-            Object[] tmp = new Object[size * 2];
+            Object[] tmp;
+            int capacity = size * 2;
+            tmp = new Object[capacity];
             System.arraycopy(this.data, 0, tmp, 0, this.size);
+            this.size = capacity;
+            tmp[indexOfElement++] = val;
+
             this.data = tmp;
-            this.data[indexOfElement] = var1;
-            indexOfElement++;
         }
     }
 
+
     public void removeElement(int var1) {
         assert (indexOfElement >= 0 && indexOfElement <= size - 1);      // проверка на диапазон индекса
-        Object tmp[] = new Object[data.length - 1];             //создание нового массива
+        Object tmp[] = new Object[data.length - 1];                      //создание нового массива
         if (indexOfElement == 0) {                                 // Удаление нулевого элемента
             System.arraycopy(data, 1, tmp, 0, size - 1);
         } else {                                                  //Удаление не нулевого элемента
@@ -68,12 +73,16 @@ public class MyVector {
     }
 
     public void print() {
-        for (int i = 0; i < indexOfElement; i++) {
-            System.out.println(data[i] + " ");
+        if (size == 0) {
+            System.out.println("It's Empty");
+        } else {
+            for (int i = 0; i < indexOfElement; i++) {
+                System.out.println(data[i] + " ");
 
+            }
+            System.out.println("indexOfElement: " + indexOfElement);
+            System.out.println("size: " + size);
         }
-        System.out.println("indexOfElement: " + indexOfElement);
-        System.out.println("size: " + size);
     }
 
 

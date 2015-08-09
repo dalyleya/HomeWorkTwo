@@ -10,8 +10,10 @@ public class Runner {
             vec.addElement(i);
         }
         vec.print();
-        vec.clear();
+
         System.out.println("-----------------------------------------------");
+        vec.removeElement(12);
+        // vec.clear();
         vec.print();
     }
 
