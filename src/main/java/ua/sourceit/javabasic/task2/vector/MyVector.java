@@ -64,8 +64,8 @@ public class MyVector {
         if (indexOfElement == 0) {                                 // Удаление нулевого элемента
             System.arraycopy(data, 1, tmp, 0, size - 1);
         } else {                                                  //Удаление не нулевого элемента
-            System.arraycopy(data, 0, tmp, 0, var1 + 1);
-            System.arraycopy(data, var1 + 1, tmp, var1, size - var1);
+            System.arraycopy(data, 0, tmp, 0, var1);
+            System.arraycopy(data, var1 + 1, tmp, var1, (size - 1) - var1);
         }
         size--;
         indexOfElement--;
@@ -77,7 +77,7 @@ public class MyVector {
             System.out.println("It's Empty");
         } else {
             for (int i = 0; i < indexOfElement; i++) {
-                System.out.println(data[i] + " ");
+                System.out.println("Object[" + i + "] = " + data[i] + " ");
 
             }
             System.out.println("indexOfElement: " + indexOfElement);
