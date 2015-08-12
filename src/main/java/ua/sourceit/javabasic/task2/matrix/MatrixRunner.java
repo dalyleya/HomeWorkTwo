@@ -17,6 +17,33 @@ import java.io.IOException;
 
 public class MatrixRunner {
     public static void main(String args[]) throws IOException {
+        int[][] d = {{1, 2, 3}, {4, 5, 6}, {9, 1, 3}};
+        MyMatrix D = new MyMatrix(d);
+        D.show();
+        System.out.println();
 
+        MyMatrix A = MyMatrix.random(5, 5);
+        A.show();
+        System.out.println();
+
+
+        MyMatrix B = A.transpose();
+        B.show();
+        System.out.println();
+
+
+        A.plus(B).show();
+        System.out.println();
+
+        B.multymlyMatrix(A).show();
+        System.out.println();
+
+
+        MyMatrix b = MyMatrix.random(5, 1);
+        b.show();
+        System.out.println();
+
+
+        A.multymlyNumber(4).show();
     }
 }

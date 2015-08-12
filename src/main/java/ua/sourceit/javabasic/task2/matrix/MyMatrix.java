@@ -15,20 +15,20 @@ package ua.sourceit.javabasic.task2.matrix;
 public class MyMatrix {
     private final int M;             // номер столбца
     private final int N;             // номер ячейки
-    private final double[][] data;   // матрица M*N
+    private final int[][] data;   // матрица M*N
 
     // Создание нулевой матрицы
     public MyMatrix(int M, int N) {
         this.M = M;
         this.N = N;
-        data = new double[M][N];
+        data = new int[M][N];
     }
 
     // конструктор из многомерного массива
-    public MyMatrix(double[][] data) {
+    public MyMatrix(int[][] data) {
         M = data.length;
         N = data[0].length;
-        this.data = new double[M][N];
+        this.data = new int[M][N];
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
                 this.data[i][j] = data[i][j];
@@ -38,8 +38,9 @@ public class MyMatrix {
     public static MyMatrix random(int M, int N) {
         MyMatrix A = new MyMatrix(M, N);
         for (int i = 0; i < M; i++)
-            for (int j = 0; j < N; j++)
-                A.data[i][j] = Math.random();
+            for (int j = 0; j < N; j++) {
+                A.data[i][j] = (int) (Math.random() * 100);
+            }
         return A;
     }
 
@@ -88,7 +89,7 @@ public class MyMatrix {
     public void show() {
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++)
-                System.out.printf("%9.4f ", data[i][j]);
+                System.out.printf("%9d ", data[i][j]);
             System.out.println();
         }
     }
