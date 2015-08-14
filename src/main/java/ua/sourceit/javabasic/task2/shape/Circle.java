@@ -32,6 +32,30 @@ public class Circle extends Shape {
         this.yCenterCord = yCord;
     }
 
+    public double getxCenterCord() {
+        return xCenterCord;
+    }
+
+    public void setxCenterCord(double xCenterCord) {
+        this.xCenterCord = xCenterCord;
+    }
+
+    public double getyCenterCord() {
+        return yCenterCord;
+    }
+
+    public void setyCenterCord(double yCenterCord) {
+        this.yCenterCord = yCenterCord;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
     @Override
     void draw() {
         System.out.println("Круг расположен в точках Х: " + xCenterCord + " Y: " + yCenterCord + " R-радиус: " + radius);
