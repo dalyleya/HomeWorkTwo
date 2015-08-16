@@ -12,10 +12,11 @@ package ua.sourceit.javabasic.task2.matrix;
  * 5) вывод на печать.
  * Created by user on 11.08.2015.
  */
+
 public class MyMatrix {
     private final int M;             // номер столбца
     private final int N;             // номер ячейки
-    private final int[][] data;   // матрица M*N
+    private final int[][] data;      // матрица M*N
 
     // Создание нулевой матрицы
     public MyMatrix(int M, int N) {
@@ -36,35 +37,35 @@ public class MyMatrix {
 
     //матрица заполненая случайными числами
     public static MyMatrix random(int M, int N) {
-        MyMatrix A = new MyMatrix(M, N);
+        MyMatrix a = new MyMatrix(M, N);
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++) {
-                A.data[i][j] = (int) (Math.random() * 100);
+                a.data[i][j] = (int) (Math.random() * 100);
             }
-        return A;
+        return a;
     }
 
     // сложение двух матриц
-    public MyMatrix plus(MyMatrix B) {
-        MyMatrix A = this;
-        if (B.M != A.M || B.N != A.N) throw new RuntimeException("Неправильные размеры матрицы");
-        MyMatrix C = new MyMatrix(M, N);
+    public MyMatrix plus(MyMatrix b) {
+        MyMatrix a = this;
+        if (b.M != a.M || b.N != a.N) throw new RuntimeException("IllegalArgumentEx");
+        MyMatrix c = new MyMatrix(M, N);
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
-                C.data[i][j] = A.data[i][j] + B.data[i][j];
-        return C;
+                c.data[i][j] = a.data[i][j] + b.data[i][j];
+        return c;
     }
 
     // return C = A * B
-    public MyMatrix multymlyMatrix(MyMatrix B) {
-        MyMatrix A = this;
-        if (A.N != B.M) throw new RuntimeException("Неправильные размеры матрицы");
-        MyMatrix C = new MyMatrix(A.M, B.N);
-        for (int i = 0; i < C.M; i++)
-            for (int j = 0; j < C.N; j++)
-                for (int k = 0; k < A.N; k++)
-                    C.data[i][j] += (A.data[i][k] * B.data[k][j]);
-        return C;
+    public MyMatrix multymlyMatrix(MyMatrix b) {
+        MyMatrix a = this;
+        if (a.N != b.M) throw new RuntimeException("IllegalArgumentEx");
+        MyMatrix c = new MyMatrix(a.M, b.N);
+        for (int i = 0; i < c.M; i++)
+            for (int j = 0; j < c.N; j++)
+                for (int k = 0; k < a.N; k++)
+                    c.data[i][j] += (a.data[i][k] * b.data[k][j]);
+        return c;
     }
 
     public MyMatrix multymlyNumber(int a) {
@@ -79,11 +80,11 @@ public class MyMatrix {
     }
 
     public MyMatrix transpose() {
-        MyMatrix A = new MyMatrix(N, M);
+        MyMatrix a = new MyMatrix(N, M);
         for (int i = 0; i < M; i++)
             for (int j = 0; j < N; j++)
-                A.data[j][i] = this.data[i][j];
-        return A;
+                a.data[j][i] = this.data[i][j];
+        return a;
     }
 
     public void show() {

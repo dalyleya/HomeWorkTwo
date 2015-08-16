@@ -13,15 +13,15 @@ package ua.sourceit.javabasic.task2.vector;
  * Created by user on 06.08.2015.
  */
 public class MyVector {
-    private static final int MAX_ARRAY_SIZE = 2147483639;
+
     private int indexOfElement;
     private Object[] data;
-    private int size;
+    private int size = 10;
 
 
     public MyVector(int var1) {
         if (var1 < 0) {
-            throw new ArrayIndexOutOfBoundsException("Отрицательный размер");
+            throw new ArrayIndexOutOfBoundsException("Error size");
         } else {
             this.data = new Object[var1];
             this.size = data.length;
@@ -30,7 +30,7 @@ public class MyVector {
     }
 
     public MyVector() {
-        this(2);
+        this.data = new Object[size];
     }
 
     public void clear() {
@@ -51,7 +51,8 @@ public class MyVector {
             tmp = new Object[capacity];
             System.arraycopy(this.data, 0, tmp, 0, this.size);
             this.size = capacity;
-            tmp[indexOfElement++] = val;
+            tmp[indexOfElement] = val;
+            indexOfElement++;
 
             this.data = tmp;
         }
@@ -60,10 +61,10 @@ public class MyVector {
 
     public void removeElement(int var1) {
         assert (indexOfElement >= 0 && indexOfElement <= size - 1);      // проверка на диапазон индекса
-        Object tmp[] = new Object[data.length - 1];                      //создание нового массива
-        if (indexOfElement == 0) {                                 // Удаление нулевого элемента
+        Object tmp[] = new Object[data.length - 1];                      // создание нового массива
+        if (indexOfElement == 0) {                                       // Удаление нулевого элемента
             System.arraycopy(data, 1, tmp, 0, size - 1);
-        } else {                                                  //Удаление не нулевого элемента
+        } else {                                                         // Удаление не нулевого элемента
             System.arraycopy(data, 0, tmp, 0, var1);
             System.arraycopy(data, var1 + 1, tmp, var1, (size - 1) - var1);
         }

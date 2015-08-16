@@ -33,6 +33,7 @@ public class Circle extends Shape {
     }
 
     public double getxCenterCord() {
+
         return xCenterCord;
     }
 
@@ -62,15 +63,13 @@ public class Circle extends Shape {
     }
 
     public boolean gettingPointIntoCircle(double xCord, double yCord) {
-        if ((xCord <= (xCenterCord + radius)) || (xCord >= (xCenterCord - radius)) &&
-                (yCord <= (yCenterCord + radius)) || (yCord >= (yCenterCord - radius))) {
-            return true;
-        }
-        return false;
+
+        return ((xCord <= (xCenterCord + radius)) || (xCord >= (xCenterCord - radius)) &&
+                (yCord <= (yCenterCord + radius)) || (yCord >= (yCenterCord - radius)));
     }
 
     public boolean gettingCircleIntoCircle(double xCord, double yCord, double xRadius) {
-        if (gettingPointIntoCircle(xCord, yCord) == false) {
+        if (!gettingPointIntoCircle(xCord, yCord)) {
             return false;
         }
         if ((xCenterCord + radius) > (xCord + xRadius) & (yCenterCord + radius) > (yCord + xRadius)) {
