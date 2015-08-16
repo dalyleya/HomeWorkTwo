@@ -1,10 +1,10 @@
 package ua.sourceit.javabasic.task2.mylinkedlist;
 
 /**
- * 1) Создать класс LinkedList. Ваш класс должен реализовать интерфейс List.2)
- * Реализовать методы:
+ * 1) Создать класс LinkedList. Ваш класс должен реализовать интерфейс List.
+ * 2)Реализовать методы:
  * -add() в конец +
- * -add() по индексу
+ * -add() по индексу +
  * -clear()
  * -contains()
  * -get() по индексу
@@ -42,9 +42,11 @@ public class MylinkedList<E> {
     }
 
     public void set(int index, E element) {
-        if (isEmpty()) {
-
-        }
+//
+//       MylinkedList.Node var3;
+//        var3 = Node.item(var1);
+//        E var4 = var3.item;
+//        var3.item = var2;
     }
 
     public boolean add(E o) {
@@ -92,14 +94,35 @@ public class MylinkedList<E> {
         return null;
     }
 
-    public void add(int index, Object element) {
+    public void add(int var1, Node<E> var2) {
+        if (this.checkPositionIndex(var1)) {
+            if (var1 == this.size) {
+                this.linkLast((E) var2);
+            }
+        } else {
+            final Node<E> pred = var2.prev;
+            final Node newNode = new Node(pred, var1, var2);
+            var2.prev = newNode;
+            if (pred == null)
+                first = newNode;
+            else
+                pred.next = newNode;
+            size++;
+        }
 
     }
 
+    private boolean checkPositionIndex(int var1) {
+        if (!(var1 >= 0 && var1 <= this.size)) {
+            return true;
+        }
+        return false;
+    }
+
     private static class Node<E> {
-        E item;
-        MylinkedList.Node<E> next;
-        MylinkedList.Node<E> prev;
+        public E item;
+        public MylinkedList.Node<E> next;
+        public MylinkedList.Node<E> prev;
 
         Node(MylinkedList.Node<E> var1, E var2, MylinkedList.Node<E> var3) {
             this.item = var2;
