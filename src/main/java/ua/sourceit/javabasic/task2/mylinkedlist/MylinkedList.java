@@ -130,5 +130,22 @@ public class MylinkedList<E> {
             this.prev = var1;
         }
     }
+//    public boolean add(Object o) {
+//        if (capacity == 0) {
+//            root.setValue(o);
+//            capacity++;
+//            return true;
+//        }
+//        Element current = root;
+//        while (current.getNext() != null) {
+//            current = current.getNext();
+//        }
+//        Element el = new Element();
+//        el.setValue(o);
+//        el.setPrevious(current);
+//        current.setNext(el);
+//        capacity++;
+//        return true;
+//    }
 }
 

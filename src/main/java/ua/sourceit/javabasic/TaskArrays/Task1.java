@@ -1,4 +1,4 @@
-package ua.sourceit.javabasic.Task0;
+package ua.sourceit.javabasic.TaskArrays;
 
 /**
  * Дан массив натуральных чисел. Найти сумму элементов, кратных данному K.

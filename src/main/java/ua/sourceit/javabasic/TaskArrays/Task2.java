@@ -1,4 +1,4 @@
-package ua.sourceit.javabasic.Task0;
+package ua.sourceit.javabasic.TaskArrays;
 
 import java.util.ArrayList;
 

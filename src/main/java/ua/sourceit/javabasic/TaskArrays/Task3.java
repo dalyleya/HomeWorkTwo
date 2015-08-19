@@ -1,4 +1,4 @@
-package ua.sourceit.javabasic.Task0;
+package ua.sourceit.javabasic.TaskArrays;
 
 /**
  * Дана последовательность целых чисел a1, a2, ..., an.
