@@ -25,6 +25,7 @@ public class MylinkedList<E> {
     transient MylinkedList.Node<E> last;
 
     public MylinkedList(int size, Node<E> first, Node<E> last) {
+
         this.size = size;
         this.first = first;
         this.last = last;
@@ -32,6 +33,7 @@ public class MylinkedList<E> {
 
     //метод который возвращает размер списка
     public int size() {
+
         return this.size;
     }
 
@@ -50,6 +52,7 @@ public class MylinkedList<E> {
     }
 
     public boolean add(E o) {
+
         if (isEmpty()) {
             this.linkFirst(o);
             return true;
@@ -60,6 +63,7 @@ public class MylinkedList<E> {
     }
 
     private void linkFirst(E var1) {
+
         MylinkedList.Node var2 = this.first;
         MylinkedList.Node var3 = new MylinkedList.Node(null, var1, var2);
 
@@ -73,6 +77,7 @@ public class MylinkedList<E> {
     }
 
     void linkLast(E var1) {
+
         MylinkedList.Node var2 = this.last;
         MylinkedList.Node var3 = new MylinkedList.Node(var2, var1, null);
 
@@ -91,10 +96,12 @@ public class MylinkedList<E> {
     }
 
     public Object get(int index) {
+
         return null;
     }
 
     public void add(int var1, Node<E> var2) {
+
         if (this.checkPositionIndex(var1)) {
             if (var1 == this.size) {
                 this.linkLast((E) var2);
@@ -113,23 +120,74 @@ public class MylinkedList<E> {
     }
 
     private boolean checkPositionIndex(int var1) {
+
         if (!(var1 >= 0 && var1 <= this.size)) {
             return true;
         }
         return false;
     }
 
+
+    public boolean remove(Object var1) {
+
+        MylinkedList.Node var2;
+        if (var1 == null) {
+            for (var2 = this.first; var2 != null; var2 = var2.next) {
+                if (var2.item == null) {
+                    this.unlink(var2);
+                    return true;
+                }
+            }
+        } else {
+            for (var2 = this.first; var2 != null; var2 = var2.next) {
+                if (var1.equals(var2.item)) {
+                    this.unlink(var2);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    E unlink(LinkedList.Node<E> var1) {
+
+        Object var2 = var1.item;
+        LinkedList.Node var3 = var1.next;
+        LinkedList.Node var4 = var1.prev;
+        if (var4 == null) {
+            this.first = var3;
+        } else {
+            var4.next = var3;
+            var1.prev = null;
+        }
+
+        if (var3 == null) {
+            this.last = var4;
+        } else {
+            var3.prev = var4;
+            var1.next = null;
+        }
+
+        var1.item = null;
+        --this.size;
+        return var2;
+    }
+
     private static class Node<E> {
+
         public E item;
         public MylinkedList.Node<E> next;
         public MylinkedList.Node<E> prev;
 
         Node(MylinkedList.Node<E> var1, E var2, MylinkedList.Node<E> var3) {
+
             this.item = var2;
             this.next = var3;
             this.prev = var1;
         }
     }
+}
 //    public boolean add(Object o) {
 //        if (capacity == 0) {
 //            root.setValue(o);
