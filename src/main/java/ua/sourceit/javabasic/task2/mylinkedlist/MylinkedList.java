@@ -5,7 +5,7 @@ package ua.sourceit.javabasic.task2.mylinkedlist;
  * 2)Реализовать методы:
  * -add() в конец +
  * -add() по индексу +
- * -clear()
+ * -clear()+
  * -contains()
  * -get() по индексу
  * -isEmpty()+
@@ -19,191 +19,193 @@ package ua.sourceit.javabasic.task2.mylinkedlist;
  */
 public class MylinkedList<E> {
 
-    private static final long serialVersionUID = 876323262645176354L;
-    transient int size;
-    transient MylinkedList.Node<E> first;
-    transient MylinkedList.Node<E> last;
+	private static final long serialVersionUID = 876323262645176354L;
+	transient int size;
+	transient MylinkedList.Node<E> first;
+	transient MylinkedList.Node<E> last;
 
-    public MylinkedList(int size, Node<E> first, Node<E> last) {
+	public MylinkedList(int size, Node<E> first, Node<E> last) {
 
-        this.size = size;
-        this.first = first;
-        this.last = last;
-    }
+		this.size = size;
+		this.first = first;
+		this.last = last;
+	}
 
-    //метод который возвращает размер списка
-    public int size() {
+	//метод который возвращает размер списка
+	public int size() {
 
-        return this.size;
-    }
+		return this.size;
+	}
 
-    //проверка списка на наличие элементов
-    public boolean isEmpty() {
+	//проверка списка на наличие элементов
+	public boolean isEmpty() {
 
-        return (this.size == 0) ? true : false;
-    }
+		return (this.size == 0) ? true : false;
+	}
 
-    public void set(int index, E element) {
+	public void set(int index, E element) {
 //
 //       MylinkedList.Node var3;
 //        var3 = Node.item(var1);
 //        E var4 = var3.item;
 //        var3.item = var2;
-    }
+	}
 
-    public boolean add(E o) {
+	public void clear() {
 
-        if (isEmpty()) {
-            this.linkFirst(o);
-            return true;
-        } else {
-            this.linkLast(o);
-        }
-        return false;
-    }
+		MylinkedList.Node var2;
 
-    private void linkFirst(E var1) {
+		for (MylinkedList.Node var1 = this.first; var1 != null; var1 = var2) {
 
-        MylinkedList.Node var2 = this.first;
-        MylinkedList.Node var3 = new MylinkedList.Node(null, var1, var2);
+			var2 = var1.next;
+			var1.item = null;
+			var1.next = null;
+			var1.prev = null;
+		}
 
-        this.first = var3;
-        if (var2 == null) {
-            this.last = var3;
-        } else {
-            var2.prev = var3;
-        }
-        ++this.size;
-    }
+		this.first = this.last = null;
+		this.size = 0;
 
-    void linkLast(E var1) {
+	}
 
-        MylinkedList.Node var2 = this.last;
-        MylinkedList.Node var3 = new MylinkedList.Node(var2, var1, null);
+	public boolean add(E o) {
 
-        this.last = var3;
-        if (var2 == null) {
-            this.first = var3;
-        } else {
-            var2.next = var3;
-        }
+		if (isEmpty()) {
+			this.linkFirst(o);
+			return true;
+		} else {
+			this.linkLast(o);
+		}
+		return false;
+	}
 
-        ++this.size;
-    }
+	private void linkFirst(E var1) {
 
-    public void clear() {
+		Node var2 = this.first;
+		Node var3 = new Node(null, var1, var2);
 
-    }
+		this.first = var3;
+		if (var2 == null) {
+			this.last = var3;
+		} else {
+			var2.prev = var3;
+		}
+		++this.size;
+	}
 
-    public Object get(int index) {
+	void linkLast(E var1) {
 
-        return null;
-    }
+		Node var2 = this.last;
+		Node var3 = new Node(var2, var1, null);
 
-    public void add(int var1, Node<E> var2) {
+		this.last = var3;
+		if (var2 == null) {
+			this.first = var3;
+		} else {
+			var2.next = var3;
+		}
 
-        if (this.checkPositionIndex(var1)) {
-            if (var1 == this.size) {
-                this.linkLast((E) var2);
-            }
-        } else {
-            final Node<E> pred = var2.prev;
-            final Node newNode = new Node(pred, var1, var2);
-            var2.prev = newNode;
-            if (pred == null)
-                first = newNode;
-            else
-                pred.next = newNode;
-            size++;
-        }
+		++this.size;
+	}
 
-    }
+	public void clear() {
 
-    private boolean checkPositionIndex(int var1) {
+	}
 
-        if (!(var1 >= 0 && var1 <= this.size)) {
-            return true;
-        }
-        return false;
-    }
+	public Object get(int index) {
+
+		return null;
+	}
+
+	public void add(int var1, Node<E> var2) {
+
+		if (this.checkPositionIndex(var1)) {
+			if (var1 == this.size) {
+				this.linkLast((E) var2);
+			}
+		} else {
+			final Node<E> pred = var2.prev;
+			final Node newNode = new Node(pred, var1, var2);
+			var2.prev = newNode;
+			if (pred == null)
+				first = newNode;
+			else
+				pred.next = newNode;
+			size++;
+		}
+
+	}
+
+	private boolean checkPositionIndex(int var1) {
+
+		if (!(var1 >= 0 && var1 <= this.size)) {
+			return true;
+		}
+		return false;
+	}
 
 
-    public boolean remove(Object var1) {
+	public boolean remove(Object var1) {
 
-        MylinkedList.Node var2;
-        if (var1 == null) {
-            for (var2 = this.first; var2 != null; var2 = var2.next) {
-                if (var2.item == null) {
-                    this.unlink(var2);
-                    return true;
-                }
-            }
-        } else {
-            for (var2 = this.first; var2 != null; var2 = var2.next) {
-                if (var1.equals(var2.item)) {
-                    this.unlink(var2);
-                    return true;
-                }
-            }
-        }
+		Node<E> var2;
+		if (var1 == null) {
+			for (var2 = this.first; var2 != null; var2 = var2.next) {
+				if (var2.item == null) {
+					this.unlink(var2);
+					return true;
+				}
+			}
+		} else {
+			for (var2 = this.first; var2 != null; var2 = var2.next) {
+				if (var1.equals(var2.item)) {
+					this.unlink(var2);
+					return true;
+				}
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    E unlink(LinkedList.Node<E> var1) {
+	E unlink(MylinkedList.Node<E> var1) {
 
-        Object var2 = var1.item;
-        LinkedList.Node var3 = var1.next;
-        LinkedList.Node var4 = var1.prev;
-        if (var4 == null) {
-            this.first = var3;
-        } else {
-            var4.next = var3;
-            var1.prev = null;
-        }
+		Object var2 = var1.item;
+		Node<E> var3 = var1.next;
+		Node<E> var4 = var1.prev;
+		if (var4 == null) {
+			this.first = var3;
+		} else {
+			var4.next = var3;
+			var1.prev = null;
+		}
 
-        if (var3 == null) {
-            this.last = var4;
-        } else {
-            var3.prev = var4;
-            var1.next = null;
-        }
+		if (var3 == null) {
+			this.last = var4;
+			this.last = var4;
+		} else {
+			var3.prev = var4;
+			var1.next = null;
+		}
 
-        var1.item = null;
-        --this.size;
-        return var2;
-    }
+		var1.item = null;
+		--this.size;
+		return (E) var2;
+	}
 
-    private static class Node<E> {
+	private static class Node<E> {
 
-        public E item;
-        public MylinkedList.Node<E> next;
-        public MylinkedList.Node<E> prev;
+		public E item;
+		public MylinkedList.Node<E> next;
+		public MylinkedList.Node<E> prev;
 
-        Node(MylinkedList.Node<E> var1, E var2, MylinkedList.Node<E> var3) {
+		Node(MylinkedList.Node<E> var1, E var2, MylinkedList.Node<E> var3) {
 
-            this.item = var2;
-            this.next = var3;
-            this.prev = var1;
-        }
-    }
+			this.item = var2;
+			this.next = var3;
+			this.prev = var1;
+		}
+	}
 }
-//    public boolean add(Object o) {
-//        if (capacity == 0) {
-//            root.setValue(o);
-//            capacity++;
-//            return true;
-//        }
-//        Element current = root;
-//        while (current.getNext() != null) {
-//            current = current.getNext();
-//        }
-//        Element el = new Element();
-//        el.setValue(o);
-//        el.setPrevious(current);
-//        current.setNext(el);
-//        capacity++;
-//        return true;
-//    }
-}
+
+
 
